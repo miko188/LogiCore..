@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LogiCore — Warehouse · Logistics · Enterprise</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/variables.css">
+<style>
+  /* ===== GLOBAL STYLES ===== */
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: #0f172a;
+    color: #fff;
+    overflow-x: hidden;
+  }
+
+  /* ===== HERO SECTION ===== */
+  .landing {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: radial-gradient(circle at 50% -20%, #1e3a8a 0%, #0f172a 70%);
+    position: relative;
+  }
+
+  /* Decorative background glow */
+  .landing::before {
+    content: '';
+    position: absolute;
+    top: 10%; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(37,99,235,0.3) 0%, rgba(37,99,235,0) 70%);
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* ===== HEADER / NAVBAR ===== */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 8%;
+    position: relative;
+    z-index: 10;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+  
+  .brand svg {
+    width: 44px;
+    height: 44px;
+    filter: drop-shadow(0 4px 12px rgba(37,99,235,0.6));
+  }
+
+  .brand-text h1 {
+    font-size: 24px;
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: -0.5px;
+    background: linear-gradient(90deg, #ffffff, #93c5fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .brand-text span {
+    display: block;
+    font-size: 10px;
+    color: #93c5fd;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .nav-links a {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: #fff;
+  }
+
+  .btn-nav {
+    background: rgba(255,255,255,0.1);
+    padding: 8px 16px;
+    border-radius: 8px;
+    color: #fff !important;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .btn-nav:hover {
+    background: rgba(255,255,255,0.2);
+  }
+
+  /* ===== MAIN HERO CONTENT ===== */
+  .hero-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(37,99,235,0.15);
+    border: 1px solid rgba(37,99,235,0.3);
+    border-radius: 99px;
+    color: #60a5fa;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    letter-spacing: 0.5px;
+  }
+
+  .hero-title {
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0 0 24px 0;
+    letter-spacing: -2px;
+    max-width: 900px;
+  }
+
+  .hero-title span {
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-subtitle {
+    font-size: 20px;
+    color: #94a3b8;
+    max-width: 700px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 60px;
+  }
+
+  .btn-large {
+    padding: 16px 32px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-primary {
+    background: #2563eb;
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(37,99,235,0.4);
+  }
+
+  .btn-primary:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(37,99,235,0.5);
+  }
+
+  .btn-secondary {
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-2px);
+  }
+
+  /* ===== FEATURES GRID (WMS / TMS / ERP) ===== */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .feature-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 32px;
+    text-align: left;
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card:hover {
+    background: rgba(255,255,255,0.06);
+    transform: translateY(-4px);
+    border-color: rgba(37,99,235,0.4);
+  }
+
+  .feature-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  .feature-icon.blue { background: rgba(37,99,235,0.2); color: #60a5fa; }
+  .feature-icon.purple { background: rgba(139,92,246,0.2); color: #a78bfa; }
+  .feature-icon.green { background: rgba(16,185,129,0.2); color: #34d399; }
+
+  .feature-card h3 {
+    font-size: 20px;
+    margin: 0 0 10px 0;
+    font-weight: 700;
+  }
+
+  .feature-card p {
+    color: #94a3b8;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center;
+    padding: 30px;
+    color: #64748b;
+    font-size: 13px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    margin-top: auto;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .hero-title { font-size: 42px; letter-spacing: -1px; }
+    .hero-subtitle { font-size: 16px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero-actions { flex-direction: column; width: 100%; max-width: 300px; }
+    .btn-large { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="landing">
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="brand">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M32 4L4 20V44L32 60L60 44V20L32 4Z" fill="#2563eb"/>
+        <path d="M32 4L4 20L32 36L60 20L32 4Z" fill="#60a5fa"/>
+        <path d="M32 36V60L60 44V20L32 36Z" fill="#1d4ed8"/>
+        <path d="M12 26V40L24 47V33L12 26Z" fill="#ffffff"/>
+        <path d="M32 36V60L4 44V20L32 36Z" fill="#3b82f6" opacity="0.3"/>
+      </svg>
+      <div class="brand-text">
+        <h1>LogiCore</h1>
+        <span>Warehouse · Logistics · Enterprise</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="pages/login.html" class="btn-nav">Sign In</a>
+    </div>
+  </nav>
+
+  <!-- HERO CONTENT -->
+  <main class="hero-content">
+    <div class="hero-badge">🚀 Next-Generation Logistics Software</div>
+    
+    <h1 class="hero-title">
+      Manage your warehouse, logistics & <span>business</span> in one place.
+    </h1>
+    
+    <p class="hero-subtitle">
+      LogiCore is a modern, all-in-one solution for WMS, TMS, and ERP. Streamline operations, track inventory, and optimize deliveries.
+    </p>
+
+    <div class="hero-actions">
+      <a href="pages/login.html" class="btn-large btn-primary">
+        Get Started
+      </a>
+      <a href="pages/dashboard.html" class="btn-large btn-secondary">
+        Open Live Demo
+      </a>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon blue">📦</div>
+        <h3>WMS — Warehouse</h3>
+        <p>Full control over inventory, bins, stock levels, receiving, and shipping operations.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon purple">🚚</div>
+        <h3>TMS — Logistics</h3>
+        <p>Manage orders, fleets, drivers, and route planning with real-time tracking.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon green">🏢</div>
+        <h3>ERP — Enterprise</h3>
+        <p>Integrated finance, suppliers, employees, and automated reporting in one hub.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    © 2026 LogiCore Enterprise. Built with Vanilla JS & CSS. Demo version.
+  </footer>
+</div>
+
+<!-- REDIRECT LOGIC -->
+<script>
+  // Если пользователь уже вошел в систему, кнопка "Open Live Demo" 
+  // или автоматическая проверка может перенаправить его.
+  (function(){
+    try{
+      var s = sessionStorage.getItem('logicore_session');
+      if (s) {
+        // Раскомментируйте строку ниже, если хотите, чтобы авторизованные пользователи
+        // не видели лендинг, а сразу шли на дашборд.
+        // location.href = 'pages/dashboard.html';
+      }
+    }catch(e){}
+  })();
+</script>
+</body>
+</html>
